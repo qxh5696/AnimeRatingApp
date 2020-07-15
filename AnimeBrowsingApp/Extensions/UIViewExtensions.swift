@@ -27,9 +27,19 @@ extension UIView {
     }
     
     func addShadow() {
+        self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.5
+        self.layer.shadowOpacity = 0.23
         self.layer.shadowRadius = 2.0
         self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
+    }
+    
+    func addDarkenedEffect() {
+        let darkView = UIView.init(frame: self.frame)
+        let darkLayer = darkView.layer
+        darkLayer.backgroundColor = UIColor.black.cgColor
+        darkLayer.opacity = 0.25
+        self.addSubview(darkView)
     }
 }

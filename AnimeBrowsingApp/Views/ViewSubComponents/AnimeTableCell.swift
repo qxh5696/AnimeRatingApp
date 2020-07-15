@@ -28,8 +28,10 @@ class AnimeTableCell: UITableViewCell {
             guard let image = UIImage(data: data!) else { return }
             
             DispatchQueue.main.async() { [weak self] in
-                self?.backgroundView = UIImageView(image: image)
-                self?.backgroundView?.contentMode = .scaleToFill
+                let imageView = UIImageView(image: image)
+                self?.contentView.addSubview(imageView)
+                imageView.pin(to: self!.contentView)
+                imageView.addShadow()
             }
         }.resume()
     }

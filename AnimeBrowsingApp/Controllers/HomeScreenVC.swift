@@ -13,7 +13,7 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     let cellReuseID = "AnimeCell"
     var trendingAnimes: [Anime?] = []
-    let cellSpacingHeight: CGFloat = 5
+    let cellSpacingHeight: CGFloat = 3
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,7 +35,6 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             print("Setting anime cell")
             cell.makeBackgroundImageCall(anime: anime)
         }
-        cell.addShadow()
         return cell
     }
     
@@ -90,7 +89,6 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             } catch {
                 print("Error in network call")
             }
