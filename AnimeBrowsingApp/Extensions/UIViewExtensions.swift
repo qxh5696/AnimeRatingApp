@@ -32,7 +32,6 @@ extension UIView {
         self.layer.shadowOpacity = 0.23
         self.layer.shadowRadius = 2.0
         self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: 8, height: 8)).cgPath
     }
     
     func addDarkenedEffect() {
@@ -42,4 +41,6 @@ extension UIView {
         darkLayer.opacity = 0.25
         self.addSubview(darkView)
     }
+    
+    
 }

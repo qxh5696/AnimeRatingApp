@@ -32,7 +32,6 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: cellReuseID) as! AnimeTableCell
         if let anime = trendingAnimes[indexPath.section] {
-            print("Setting anime cell")
             cell.makeBackgroundImageCall(anime: anime)
         }
         return cell
@@ -62,6 +61,8 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         // Do any additional setup after loading the view.
         setUpTableView()
         getAnimes()
+        let modelName = UIDevice.modelName
+        print(modelName)
     }
     
     func setUpTableView() {

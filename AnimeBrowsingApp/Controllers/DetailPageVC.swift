@@ -12,6 +12,10 @@ class DetailPageVC: UIViewController, UIScrollViewDelegate {
 
     var anime: Anime?
     var scrollView = UIScrollView()
+    var posterImage = UIImageView()
+    var titleLabel = UILabel()
+    var synopsisLabel = UILabel()
+    var backButton = UIButton()
     
     
     override func viewDidLoad() {
@@ -64,50 +68,43 @@ class DetailPageVC: UIViewController, UIScrollViewDelegate {
    }
    
    func setPosterImage(image: UIImage) {
-       let posterImage = UIImageView(image: image)
-       posterImage.frame = CGRect(x: 0, y:0, width: view.frame.width, height: view.frame.height - 300)
-       scrollView.addSubview(posterImage)
+        posterImage.image = image
+        posterImage.frame = CGRect(x: 0, y:0, width: view.frame.width, height: view.frame.height - 300)
+        scrollView.addSubview(posterImage)
    }
    
    func setTitleLabel() {
-       let titleLabel = UILabel()
-       scrollView.addSubview(titleLabel)
-       titleLabel.textColor = .white
-       titleLabel.font = titleLabel.font.withSize(30)
-       titleLabel.text = anime?.getTitle()
-       titleLabel.numberOfLines = 0
-       titleLabel.translatesAutoresizingMaskIntoConstraints = false
-       titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-       titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-       titleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 530).isActive = true
-       titleLabel.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: 560).isActive = true
+        scrollView.addSubview(titleLabel)
+        titleLabel.textColor = .white
+        titleLabel.font = titleLabel.font.withSize(30)
+        titleLabel.text = anime?.getTitle()
+        titleLabel.numberOfLines = 0
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: posterImage.bottomAnchor, constant: 30).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 40).isActive = true
    }
            
    func setSynopsisLabel() {
-       let synopsisLabel = UILabel()
-       scrollView.addSubview(synopsisLabel)
-       synopsisLabel.textColor = .white
-       synopsisLabel.numberOfLines = 0
-       synopsisLabel.text = anime?.getSynopsis()
-       synopsisLabel.translatesAutoresizingMaskIntoConstraints = false
-       synopsisLabel.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 570).isActive = true
-       synopsisLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 1040).isActive = true
-       synopsisLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-       synopsisLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        scrollView.addSubview(synopsisLabel)
+        synopsisLabel.textColor = .white
+        synopsisLabel.numberOfLines = 0
+        synopsisLabel.text = anime?.getSynopsis()
+        synopsisLabel.translatesAutoresizingMaskIntoConstraints = false
+        synopsisLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        synopsisLabel.bottomAnchor.constraint(equalTo: synopsisLabel.topAnchor, constant: 500).isActive = true
+        synopsisLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
+        synopsisLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
    }
            
            
    func setBackButton() {
-       let backButton = UIButton()
-       scrollView.addSubview(backButton)
-       scrollView.bringSubviewToFront(backButton)
-       backButton.setTitle("Back", for: .normal)
-       backButton.translatesAutoresizingMaskIntoConstraints = false
-       backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-       backButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -320).isActive = true
-       backButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 30).isActive = true
-       backButton.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50).isActive = true
-    backButton.addTarget(self, action: #selector(DetailPageVC.dissDetailsPage), for: .touchUpInside)
+        scrollView.addSubview(backButton)
+        scrollView.bringSubviewToFront(backButton)
+        backButton.setTitle("Back", for: .normal)
+        backButton.frame = CGRect(x: 30, y: 30, width: 50, height: 20)
+        backButton.addTarget(self, action: #selector(DetailPageVC.dissDetailsPage), for: .touchUpInside)
    }
     
     @objc func dissDetailsPage() {

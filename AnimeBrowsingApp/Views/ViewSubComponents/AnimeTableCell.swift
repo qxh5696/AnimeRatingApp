@@ -12,6 +12,7 @@ class AnimeTableCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.addShadow()
     }
     
     required init?(coder: NSCoder) {
@@ -28,10 +29,11 @@ class AnimeTableCell: UITableViewCell {
             guard let image = UIImage(data: data!) else { return }
             
             DispatchQueue.main.async() { [weak self] in
+                guard let contentView = self?.contentView else { return }
                 let imageView = UIImageView(image: image)
-                self?.contentView.addSubview(imageView)
-                imageView.pin(to: self!.contentView)
-                imageView.addShadow()
+                contentView.addSubview(imageView)
+                imageView.pin(to: contentView)
+                contentView.sendSubviewToBack(imageView)
             }
         }.resume()
     }
