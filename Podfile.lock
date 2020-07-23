@@ -1,0 +1,81 @@
+PODS:
+  - MaterialComponents/AnimationTiming (110.3.0)
+  - MaterialComponents/Availability (110.3.0)
+  - MaterialComponents/Cards (110.3.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+  - "MaterialComponents/Cards+Theming (110.3.0)":
+    - MaterialComponents/Cards
+    - MaterialComponents/schemes/Container
+  - MaterialComponents/Elevation (110.3.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/Ink (110.3.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (110.3.0)
+  - MaterialComponents/private/Color (110.3.0):
+    - MaterialComponents/Availability
+  - MaterialComponents/private/Icons/Base (110.3.0)
+  - MaterialComponents/private/Icons/ic_check_circle (110.3.0):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (110.3.0)
+  - MaterialComponents/Ripple (110.3.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+  - MaterialComponents/schemes/Color (110.3.0):
+    - MaterialComponents/Availability
+    - MaterialComponents/private/Color
+  - MaterialComponents/schemes/Container (110.3.0):
+    - MaterialComponents/schemes/Color
+    - MaterialComponents/schemes/Shape
+    - MaterialComponents/schemes/Typography
+  - MaterialComponents/schemes/Shape (110.3.0):
+    - MaterialComponents/ShapeLibrary
+    - MaterialComponents/Shapes
+  - MaterialComponents/schemes/Typography (110.3.0):
+    - "MaterialComponents/schemes/Typography+BasicFontScheme"
+    - "MaterialComponents/schemes/Typography+Scheming"
+    - MaterialComponents/Typography
+  - "MaterialComponents/schemes/Typography+BasicFontScheme (110.3.0)"
+  - "MaterialComponents/schemes/Typography+Scheming (110.3.0)"
+  - MaterialComponents/ShadowElevations (110.3.0)
+  - MaterialComponents/ShadowLayer (110.3.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/ShapeLibrary (110.3.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/Shapes
+  - MaterialComponents/Shapes (110.3.0):
+    - MaterialComponents/private/Color
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Typography (110.3.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+    - MDFTextAccessibility
+  - MDFTextAccessibility (2.0.0)
+
+DEPENDENCIES:
+  - "MaterialComponents/Cards+Theming"
+
+SPEC REPOS:
+  trunk:
+    - MaterialComponents
+    - MDFTextAccessibility
+
+SPEC CHECKSUMS:
+  MaterialComponents: 424da6db40748236c6f071a9e9fbe00aa62033ff
+  MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+
+PODFILE CHECKSUM: 1898fb91156b46f3a6c49f0258fa1790ebf59742
+
+COCOAPODS: 1.9.3

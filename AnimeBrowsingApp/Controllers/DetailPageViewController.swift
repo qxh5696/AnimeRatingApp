@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailPageVC: UIViewController, UIScrollViewDelegate {
+class DetailPageViewController: UIViewController, UIScrollViewDelegate {
 
     var anime: Anime?
     var scrollView = UIScrollView()
@@ -104,7 +104,7 @@ class DetailPageVC: UIViewController, UIScrollViewDelegate {
         scrollView.bringSubviewToFront(backButton)
         backButton.setTitle("Back", for: .normal)
         backButton.frame = CGRect(x: 30, y: 30, width: 50, height: 20)
-        backButton.addTarget(self, action: #selector(DetailPageVC.dissDetailsPage), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(DetailPageViewController.dissDetailsPage), for: .touchUpInside)
    }
     
     @objc func dissDetailsPage() {

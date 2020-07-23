@@ -1,0 +1,6 @@
+framework module Pods_AnimeBrowsingAppTests {
+  umbrella header "Pods-AnimeBrowsingAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

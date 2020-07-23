@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        let homeScreenVC = HomeScreenVC()
-        let nav = UINavigationController(rootViewController: homeScreenVC)
+        let homeScreen = AnimeHomeCollectionViewController()
+        let nav = UINavigationController(rootViewController: homeScreen)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
     }

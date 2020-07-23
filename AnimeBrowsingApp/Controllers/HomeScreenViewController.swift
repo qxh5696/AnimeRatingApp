@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeScreenViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let tableView = UITableView()
     
     let cellReuseID = "AnimeCell"
@@ -45,7 +45,7 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let anime = trendingAnimes[indexPath.section] {
-            let detailsPage = DetailPageVC()
+            let detailsPage = DetailPageViewController()
             detailsPage.anime = anime
             self.navigationController?.pushViewController(detailsPage, animated: true)
         }
@@ -86,7 +86,9 @@ class HomeScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             }
             do {
                 let animeData = try JSONDecoder().decode(AnimeData.self, from: data!)
-                self.trendingAnimes = animeData.data
+                if let data = animeData.data {
+                    self.trendingAnimes = data
+                }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
