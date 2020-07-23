@@ -61,12 +61,38 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCardCollectionCell
         cell.cornerRadius = 8
         
-        DispatchQueue.main.async { [weak self] in
-            print("Background Images count: \(self?.animeBackgroundImages.count)")
-            guard let backgroundImage = self?.animeBackgroundImages[safe: indexPath.row] else { return }
-            cell.backgroundView = UIImageView(image: backgroundImage)
-            self?.collectionView.reloadData()
+        var image: UIImage? = nil
+        
+        guard let largeImageUrl = animeCategory[indexPath.row]?.getPosterImageLargeURL() else { return cell }
+        ImageCache.loadImage(urlString: largeImageUrl.absoluteString, completion: {string, img in
+            image = img
+        })
+        
+        if let img = image {
+            DispatchQueue.main.async { [weak self] in
+                cell.backgroundView = UIImageView(image: img)
+                self?.collectionView.reloadData()
+            }
+            return cell
         }
+                
+        URLSession.shared.dataTask(with: largeImageUrl, completionHandler: { data, response, error in
+            if (error != nil) {
+                print(error as Any)
+                return
+            }
+            
+            guard let image = UIImage(data: data!) else { return }
+            ImageCache.storeImage(urlString: largeImageUrl.absoluteString, img: image)
+            DispatchQueue.main.async { [weak self] in
+                cell.backgroundView = UIImageView(image: image)
+                
+                self?.collectionView.reloadData()
+            }
+            
+            }).resume()
+        
+        
         return cell
     }
     
@@ -74,12 +100,6 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width/2.5, height: view.frame.width/2)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 30, left: 10, bottom: 30, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView,
