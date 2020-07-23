@@ -68,8 +68,9 @@ class AnimeHomeCollectionViewController: UIViewController {
     func setUp() {
         self.navigationController?.navigationBar.isHidden = true
         makeApiCalls()
-        setUpCollectionView()
         getAnimePosterImages()
+        setUpCollectionView()
+        
     }
     
     // MARK: Anime API Calls
@@ -173,11 +174,8 @@ class AnimeHomeCollectionViewController: UIViewController {
     }
     
     func getAnimePosterImages() {
-        let group = DispatchGroup()
-        
-        
         for anime in trendingAnime {
-            guard let url = anime.getPosterImageLargeURL() else { return }
+            guard let url = anime.getPosterImageSmallURL() else { return }
             URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
                 if (error != nil) {
                     print(error as Any)
@@ -185,7 +183,8 @@ class AnimeHomeCollectionViewController: UIViewController {
                 }
                 let image = UIImage(data: data!)
                 if let img = image {
-                        self.trendingAnimeBackgroundImages.append(img)
+                    self.trendingAnimeBackgroundImages.append(img)
+                    ImageCache.storeImage(urlString: url.absoluteString, img: img)
                 }
             }).resume()
         }

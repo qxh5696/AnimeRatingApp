@@ -60,38 +60,33 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCardCollectionCell
         cell.cornerRadius = 8
-        
         var image: UIImage? = nil
         
-        guard let largeImageUrl = animeCategory[indexPath.row]?.getPosterImageLargeURL() else { return cell }
-        ImageCache.loadImage(urlString: largeImageUrl.absoluteString, completion: {string, img in
-            image = img
+        guard let smallImageUrl = animeCategory[indexPath.row]?.getPosterImageSmallURL() else { return cell }
+        ImageCache.loadImage(urlString: smallImageUrl.absoluteString, completion: {string, storedImage in
+            image = storedImage
         })
         
-        if let img = image {
-            DispatchQueue.main.async { [weak self] in
-                cell.backgroundView = UIImageView(image: img)
-                self?.collectionView.reloadData()
+        if let backgroundImage = image {
+            DispatchQueue.main.async {
+                cell.backgroundView = UIImageView(image: backgroundImage)
             }
             return cell
         }
-                
-        URLSession.shared.dataTask(with: largeImageUrl, completionHandler: { data, response, error in
+        
+        URLSession.shared.dataTask(with: smallImageUrl, completionHandler: { data, response, error in
             if (error != nil) {
                 print(error as Any)
                 return
             }
             
             guard let image = UIImage(data: data!) else { return }
-            ImageCache.storeImage(urlString: largeImageUrl.absoluteString, img: image)
+            ImageCache.storeImage(urlString: smallImageUrl.absoluteString, img: image)
             DispatchQueue.main.async { [weak self] in
                 cell.backgroundView = UIImageView(image: image)
-                
-                self?.collectionView.reloadData()
             }
             
-            }).resume()
-        
+        }).resume()
         
         return cell
     }

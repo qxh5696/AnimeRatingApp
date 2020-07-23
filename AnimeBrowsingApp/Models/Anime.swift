@@ -82,6 +82,13 @@ class Anime: Codable {
         return nil
     }
     
+    func getPosterImageSmallURL() -> URL? {
+        if let smallURL = self.attributes?.posterImage?.small {
+            return URL(string: smallURL)
+        }
+        return nil
+    }
+    
     func getSynopsis() -> String {
         if let synopsis = self.attributes?.synopsis {
             return synopsis
