@@ -13,10 +13,17 @@ import MaterialComponents.MaterialCards_Theming
 class AnimeCollectionViewController: UIViewController {
     
     var animeCategory: [Anime?] = []
-    var animeBackgroundImages: [UIImage?] = []
+    var sectionLabelString: String?
     let reuseIdentifier = "collectionViewCell"
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var sectionLabel: UILabel = {
+        let sectionLabel = UILabel()
+        sectionLabel.backgroundColor = .clear
+        sectionLabel.translatesAutoresizingMaskIntoConstraints = false
+        return sectionLabel
+    }()
+    
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: view.frame, collectionViewLayout: layout)
@@ -35,15 +42,23 @@ class AnimeCollectionViewController: UIViewController {
     
     func setUpCollectionView() {
         view.addSubview(collectionView)
+        view.addSubview(sectionLabel)
+        
+        sectionLabel.text = sectionLabelString ?? ""
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(MDCCardCollectionCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        
+        sectionLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        sectionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        sectionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        sectionLabel.bottomAnchor.constraint(equalTo: sectionLabel.topAnchor, constant: 30).isActive = true
+        
+        collectionView.topAnchor.constraint(equalTo: sectionLabel.bottomAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
     }
 }
@@ -82,7 +97,7 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
             
             guard let image = UIImage(data: data!) else { return }
             ImageCache.storeImage(urlString: smallImageUrl.absoluteString, img: image)
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 cell.backgroundView = UIImageView(image: image)
             }
             

@@ -21,13 +21,13 @@ class AnimeHomeCollectionViewController: UIViewController {
     private lazy var popularAnimeViewController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.popularAnime
+        animeCollectionViewContoller.sectionLabelString = "Popular Anime"
         return animeCollectionViewContoller
     }()
     
     private lazy var trendingAnimeViewController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.trendingAnime
-        animeCollectionViewContoller.animeBackgroundImages = self.trendingAnimeBackgroundImages
         return animeCollectionViewContoller
     }()
     
@@ -49,6 +49,8 @@ class AnimeHomeCollectionViewController: UIViewController {
         return animeCollectionViewContoller
     }()
     
+    
+    
     var trendingAnime: [Anime] = []
     var popularAnime: [Anime] = []
     var newAnime: [Anime] = []
@@ -68,7 +70,6 @@ class AnimeHomeCollectionViewController: UIViewController {
     func setUp() {
         self.navigationController?.navigationBar.isHidden = true
         makeApiCalls()
-        getAnimePosterImages()
         setUpCollectionView()
         
     }
@@ -173,27 +174,6 @@ class AnimeHomeCollectionViewController: UIViewController {
         group.wait()
     }
     
-    func getAnimePosterImages() {
-        for anime in trendingAnime {
-            guard let url = anime.getPosterImageSmallURL() else { return }
-            URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
-                if (error != nil) {
-                    print(error as Any)
-                    return
-                }
-                let image = UIImage(data: data!)
-                if let img = image {
-                    self.trendingAnimeBackgroundImages.append(img)
-                    ImageCache.storeImage(urlString: url.absoluteString, img: img)
-                }
-            }).resume()
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.trendingAnimeViewController.collectionView.reloadData()
-        }
-    }
-    
     // MARK: Set Up UI Layout
     func setUpCollectionView() {
         let backgroundImageView = UIImageView(image: UIImage(named: "akira")!)
@@ -212,10 +192,10 @@ class AnimeHomeCollectionViewController: UIViewController {
         
         
         popularAnimeViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        popularAnimeViewController.view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40).isActive = true
+        popularAnimeViewController.view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100).isActive = true
         popularAnimeViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         popularAnimeViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: 0.5).isActive = true
+        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: 0.6).isActive = true
         
         trendingAnimeViewController.view.translatesAutoresizingMaskIntoConstraints = false
         trendingAnimeViewController.view.topAnchor.constraint(equalTo: popularAnimeViewController.view.bottomAnchor, constant: 40).isActive = true
