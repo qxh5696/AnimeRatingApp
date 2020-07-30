@@ -45,6 +45,9 @@ class AnimeCollectionViewController: UIViewController {
         view.addSubview(sectionLabel)
         
         sectionLabel.text = sectionLabelString ?? ""
+        sectionLabel.textColor = .white
+        // sectionLabel.font = sectionLabel.font.withSize(20)
+        sectionLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -109,7 +112,7 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/2.5, height: view.frame.width/2)
+        return CGSize(width: view.frame.width/3, height: view.frame.width/2.3)
     }
     
     func collectionView(_ collectionView: UICollectionView,

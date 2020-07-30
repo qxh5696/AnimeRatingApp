@@ -28,28 +28,30 @@ class AnimeHomeCollectionViewController: UIViewController {
     private lazy var trendingAnimeViewController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.trendingAnime
+        animeCollectionViewContoller.sectionLabelString = "Trending Anime"
         return animeCollectionViewContoller
     }()
     
     private lazy var newAnimeController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.newAnime
+        animeCollectionViewContoller.sectionLabelString = "New Anime"
         return animeCollectionViewContoller
     }()
     
     private lazy var highestRatedAnimeController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.highestRatedAnime
+        animeCollectionViewContoller.sectionLabelString = "Highest Rated Anime"
         return animeCollectionViewContoller
     }()
     
     private lazy var mostTalkedAboutAnimeController: AnimeCollectionViewController = {
         let animeCollectionViewContoller = AnimeCollectionViewController()
         animeCollectionViewContoller.animeCategory = self.mostTalkedAboutAnime
+        animeCollectionViewContoller.sectionLabelString = "Most Talked About Anime"
         return animeCollectionViewContoller
     }()
-    
-    
     
     var trendingAnime: [Anime] = []
     var popularAnime: [Anime] = []
@@ -195,7 +197,7 @@ class AnimeHomeCollectionViewController: UIViewController {
         popularAnimeViewController.view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100).isActive = true
         popularAnimeViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         popularAnimeViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: 0.6).isActive = true
+        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: 0.5).isActive = true
         
         trendingAnimeViewController.view.translatesAutoresizingMaskIntoConstraints = false
         trendingAnimeViewController.view.topAnchor.constraint(equalTo: popularAnimeViewController.view.bottomAnchor, constant: 40).isActive = true
