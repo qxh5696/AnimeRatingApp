@@ -12,9 +12,11 @@ import MaterialComponents.MaterialCards_Theming
 
 class AnimeHomeCollectionViewController: UIViewController {
     
-    private lazy var scrollView: UIScrollView = { [weak self] in
+    let COLLECTIONVIEW_HEIGHT_MULTIPLIER = CGFloat(0.6)
+    
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.contentSize = CGSize(width: (self?.view.bounds.width)!, height: ((self?.view.bounds.height)! * 2) - 100)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height * 2)
         return scrollView
     }()
     
@@ -194,34 +196,34 @@ class AnimeHomeCollectionViewController: UIViewController {
         
         
         popularAnimeViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        popularAnimeViewController.view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100).isActive = true
+        popularAnimeViewController.view.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 75).isActive = true
         popularAnimeViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         popularAnimeViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: 0.5).isActive = true
+        popularAnimeViewController.view.heightAnchor.constraint(equalTo: popularAnimeViewController.view.widthAnchor, multiplier: COLLECTIONVIEW_HEIGHT_MULTIPLIER).isActive = true
         
         trendingAnimeViewController.view.translatesAutoresizingMaskIntoConstraints = false
         trendingAnimeViewController.view.topAnchor.constraint(equalTo: popularAnimeViewController.view.bottomAnchor, constant: 40).isActive = true
         trendingAnimeViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         trendingAnimeViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        trendingAnimeViewController.view.heightAnchor.constraint(equalTo: trendingAnimeViewController.view.widthAnchor, multiplier: 0.5).isActive = true
+        trendingAnimeViewController.view.heightAnchor.constraint(equalTo: trendingAnimeViewController.view.widthAnchor, multiplier: COLLECTIONVIEW_HEIGHT_MULTIPLIER).isActive = true
         
         newAnimeController.view.translatesAutoresizingMaskIntoConstraints = false
         newAnimeController.view.topAnchor.constraint(equalTo: trendingAnimeViewController.view.bottomAnchor, constant: 40).isActive = true
         newAnimeController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         newAnimeController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        newAnimeController.view.heightAnchor.constraint(equalTo: newAnimeController.view.widthAnchor, multiplier: 0.5).isActive = true
+        newAnimeController.view.heightAnchor.constraint(equalTo: newAnimeController.view.widthAnchor, multiplier: COLLECTIONVIEW_HEIGHT_MULTIPLIER).isActive = true
         
         highestRatedAnimeController.view.translatesAutoresizingMaskIntoConstraints = false
         highestRatedAnimeController.view.topAnchor.constraint(equalTo: newAnimeController.view.bottomAnchor, constant: 40).isActive = true
         highestRatedAnimeController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         highestRatedAnimeController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        highestRatedAnimeController.view.heightAnchor.constraint(equalTo: highestRatedAnimeController.view.widthAnchor, multiplier: 0.5).isActive = true
+        highestRatedAnimeController.view.heightAnchor.constraint(equalTo: highestRatedAnimeController.view.widthAnchor, multiplier: COLLECTIONVIEW_HEIGHT_MULTIPLIER).isActive = true
         
         mostTalkedAboutAnimeController.view.translatesAutoresizingMaskIntoConstraints = false
         mostTalkedAboutAnimeController.view.topAnchor.constraint(equalTo: highestRatedAnimeController.view.bottomAnchor, constant: 40).isActive = true
         mostTalkedAboutAnimeController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         mostTalkedAboutAnimeController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        mostTalkedAboutAnimeController.view.heightAnchor.constraint(equalTo: mostTalkedAboutAnimeController.view.widthAnchor, multiplier: 0.5).isActive = true
+        mostTalkedAboutAnimeController.view.heightAnchor.constraint(equalTo: mostTalkedAboutAnimeController.view.widthAnchor, multiplier: COLLECTIONVIEW_HEIGHT_MULTIPLIER).isActive = true
     }
     
 }

@@ -89,9 +89,6 @@ class HomeScreenViewController: UIViewController, UITableViewDataSource, UITable
                 if let data = animeData.data {
                     self.trendingAnimes = data
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
             } catch {
                 print("Error in network call")
             }

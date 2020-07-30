@@ -19,6 +19,8 @@ class AnimeCollectionViewController: UIViewController {
     private lazy var sectionLabel: UILabel = {
         let sectionLabel = UILabel()
         sectionLabel.backgroundColor = .clear
+        sectionLabel.textColor = .white
+        sectionLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         sectionLabel.translatesAutoresizingMaskIntoConstraints = false
         return sectionLabel
     }()
@@ -35,7 +37,6 @@ class AnimeCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        // getAnimeImages()
         setUpCollectionView()
     }
     
@@ -45,9 +46,6 @@ class AnimeCollectionViewController: UIViewController {
         view.addSubview(sectionLabel)
         
         sectionLabel.text = sectionLabelString ?? ""
-        sectionLabel.textColor = .white
-        // sectionLabel.font = sectionLabel.font.withSize(20)
-        sectionLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -63,21 +61,53 @@ class AnimeCollectionViewController: UIViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 10).isActive = true
+        collectionView.showsHorizontalScrollIndicator = false
     }
 }
 
 extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return animeCategory.count
+        return animeCategory.count + 1
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsPage = DetailPageViewController()
+        if (indexPath.row < animeCategory.count) {
+            detailsPage.anime = animeCategory[indexPath.row]
+            self.present(detailsPage, animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCardCollectionCell
         cell.cornerRadius = 8
+        
+        if (indexPath.row >= self.animeCategory.count) {
+            let viewMoreLabel: UILabel = {
+                let label = UILabel()
+                label.font = UIFont.boldSystemFont(ofSize: 15.0)
+                label.textColor = .white
+                label.text = "View More..."
+                return label
+            }()
+            cell.backgroundView = .none
+            cell.backgroundColor = .clear
+            cell.addSubview(viewMoreLabel)
+            
+            viewMoreLabel.translatesAutoresizingMaskIntoConstraints = false
+            viewMoreLabel.leadingAnchor.constraint(equalTo: cell.leadingAnchor, constant: 10).isActive = true
+            viewMoreLabel.trailingAnchor.constraint(equalTo: cell.trailingAnchor, constant: 10).isActive = true
+            viewMoreLabel.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            viewMoreLabel.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+            
+            return cell
+        }
+        
+        
         var image: UIImage? = nil
         
         guard let smallImageUrl = animeCategory[indexPath.row]?.getPosterImageSmallURL() else { return cell }
@@ -106,13 +136,15 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
             
         }).resume()
         
+            
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width/3, height: view.frame.width/2.3)
+        return CGSize(width: view.frame.width/3, height: view.frame.width/2) // 2.3 is ideal height
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -125,11 +157,5 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
-    }
-}
-
-extension Collection where Indices.Iterator.Element == Index {
-    subscript (safe index: Index) -> Iterator.Element? {
-        return indices.contains(index) ? self[index] : nil
     }
 }
