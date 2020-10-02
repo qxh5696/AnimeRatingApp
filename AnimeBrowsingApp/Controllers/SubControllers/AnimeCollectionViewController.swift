@@ -37,6 +37,7 @@ class AnimeCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.isHidden = true
         setUpCollectionView()
     }
     
@@ -79,12 +80,17 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
         if (indexPath.row < animeCategory.count) {
             detailsPage.anime = animeCategory[indexPath.row]
             self.present(detailsPage, animated: true)
+        } else {
+            print("Should launch category view")
+            let animeCategoryViewController = AnimeCategoryViewController()
+            navigationController?.pushViewController(animeCategoryViewController, animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MDCCardCollectionCell
         cell.cornerRadius = 8
+        cell.subviews.forEach({ $0.removeFromSuperview() })
         
         if (indexPath.row >= self.animeCategory.count) {
             let viewMoreLabel: UILabel = {
@@ -106,6 +112,7 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
             
             return cell
         }
+        
         
         
         var image: UIImage? = nil
@@ -158,4 +165,6 @@ extension AnimeCollectionViewController: UICollectionViewDelegate, UICollectionV
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
+    
+    
 }

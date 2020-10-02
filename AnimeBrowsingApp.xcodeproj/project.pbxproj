@@ -25,6 +25,7 @@
 		73A4C99205165E5F8BF22171 /* Pods_AnimeBrowsingAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE76E6C9CB5A1A0D0FA6EE3 /* Pods_AnimeBrowsingAppTests.framework */; };
 		F04C973424C9228600897247 /* AnimeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04C973324C9228600897247 /* AnimeCollectionViewController.swift */; };
 		F04C973624C9571900897247 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04C973524C9571900897247 /* ImageCache.swift */; };
+		F0BAEC9324D293FE00403D6C /* AnimeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BAEC9224D293FE00403D6C /* AnimeCategoryViewController.swift */; };
 		F0DAC92D24BEB7F000B51FD4 /* UIDeviceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAC92C24BEB7F000B51FD4 /* UIDeviceExtensions.swift */; };
 		F0DAC92F24C0CB4B00B51FD4 /* CGLayerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAC92E24C0CB4B00B51FD4 /* CGLayerExtensions.swift */; };
 		F0DAC93124C665B500B51FD4 /* AnimeHomeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DAC93024C665B500B51FD4 /* AnimeHomeCollectionViewController.swift */; };
@@ -80,6 +81,7 @@
 		E3EDB465F800BBA6CADDFF0E /* Pods-AnimeBrowsingAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimeBrowsingAppTests.release.xcconfig"; path = "Target Support Files/Pods-AnimeBrowsingAppTests/Pods-AnimeBrowsingAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		F04C973324C9228600897247 /* AnimeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCollectionViewController.swift; sourceTree = "<group>"; };
 		F04C973524C9571900897247 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		F0BAEC9224D293FE00403D6C /* AnimeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCategoryViewController.swift; sourceTree = "<group>"; };
 		F0DAC92C24BEB7F000B51FD4 /* UIDeviceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtensions.swift; sourceTree = "<group>"; };
 		F0DAC92E24C0CB4B00B51FD4 /* CGLayerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGLayerExtensions.swift; sourceTree = "<group>"; };
 		F0DAC93024C665B500B51FD4 /* AnimeHomeCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHomeCollectionViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				095E531A24ADB320009FABE3 /* HomeScreenViewController.swift */,
 				09E3463E24B6B55700DD6B0E /* DetailPageViewController.swift */,
 				F0DAC93024C665B500B51FD4 /* AnimeHomeCollectionViewController.swift */,
+				F0BAEC9224D293FE00403D6C /* AnimeCategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				095E52ED24ADB136009FABE3 /* SceneDelegate.swift in Sources */,
 				095E532824AEC225009FABE3 /* Anime.swift in Sources */,
 				095E531B24ADB320009FABE3 /* HomeScreenViewController.swift in Sources */,
+				F0BAEC9324D293FE00403D6C /* AnimeCategoryViewController.swift in Sources */,
 				09E3463F24B6B55700DD6B0E /* DetailPageViewController.swift in Sources */,
 				095E532224AEBEB5009FABE3 /* Constants.swift in Sources */,
 				095E532024ADB605009FABE3 /* AnimeTableCell.swift in Sources */,
